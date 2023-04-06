@@ -6,6 +6,8 @@ import { HomePage } from './homepage/homePage';
 import { Login } from './login/Login';
 import { Register } from './register/Register';
 import { AccountSettings } from './accountSettings/AccountSettings';
+import { JobOffers } from './jobOffers/JobOffers';
+import { UserJobOffer } from './userJobOffer/UserJobOffer';
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
         <Route path='/settings' element={<AccountSettings/>} />
+        <Route path='/allOffers' element={<JobOffers/>} />
+        <Route path='/userOffers' element={<UserJobOffer/>} />
        </Routes> 
       </Box>
     </>

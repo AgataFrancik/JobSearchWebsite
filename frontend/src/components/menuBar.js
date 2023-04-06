@@ -1,5 +1,6 @@
 import { Box, Button, Divider, Paper, Typography } from '@mui/material';
-import React from 'react'
+import React from 'react';
+import { Link } from "react-router-dom";
 
 export const MenuBar = () => {
     var token = true;
@@ -8,15 +9,21 @@ export const MenuBar = () => {
       <Box sx={{ backgroundColor: 'primary', width: '100%', height: '7rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           { token ? 
           <Box>
-              <Button>Settings</Button>
+              <Link to="/settings" style={{ textDecoration: 'none', color: "inherit" }}>
+                <Button>Settings</Button>
+              </Link>
               <Divider variant='middle'></Divider>
               <Button>Log Out</Button>
           </Box>
           :
           <Box>
-              <Button>Login</Button>
+              <Link to="/login" style={{ textDecoration: 'none', color: "inherit" }}>
+                <Button>Login</Button>
+              </Link>
               <Divider variant='middle'></Divider>
-              <Button>Create account</Button>
+              <Link to="/register" style={{ textDecoration: 'none', color: "inherit" }}>
+                <Button>Create account</Button>
+                </Link>
           </Box>
           }
       </Box>
