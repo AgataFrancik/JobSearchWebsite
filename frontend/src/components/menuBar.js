@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 export const MenuBar = () => {
-    var token = true;
+    var token = false;
   return (
     <Paper sx={{borderRadius: "1rem", width: "10rem"}}>
       <Box sx={{ backgroundColor: 'primary', width: '100%', height: '7rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
