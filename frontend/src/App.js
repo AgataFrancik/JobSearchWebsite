@@ -8,6 +8,7 @@ import { Register } from './register/Register';
 import { AccountSettings } from './accountSettings/AccountSettings';
 import { JobOffers } from './jobOffers/JobOffers';
 import { UserJobOffer } from './userJobOffer/UserJobOffer';
+import { AddJobOffer } from './addJobOffer/AddJobOffer';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/settings' element={<AccountSettings/>} />
         <Route path='/allOffers' element={<JobOffers/>} />
         <Route path='/userOffers' element={<UserJobOffer/>} />
+        <Route path='/addJobOffer' element={<AddJobOffer/>}/>
        </Routes> 
       </Box>
     </>
