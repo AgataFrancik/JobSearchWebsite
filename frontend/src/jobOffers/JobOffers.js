@@ -1,5 +1,7 @@
 import React from 'react'
-import { Box, Paper, Card, Typography, CardContent, CardActions, Button, Chip } from '@mui/material'
+import { Box, Paper, Card, Typography, CardContent, CardActions, Button, Chip, TextField } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search';
+import { Link } from 'react-router-dom';
 
 const jobs = [
   {
@@ -29,6 +31,9 @@ export const JobOffers = () => {
   return (
     <Box width="100%"  display="flex" justifyContent="center" marginTop="3rem">
       <Paper sx={{width: "85%"}}>
+      <TextField sx={{width: "95%", margin: '1rem'}} placeholder="Search" InputProps={{
+        startAdornment: <SearchIcon />
+      }} ></TextField>
         {jobs.map((job) =>(
           <Card sx={{margin: '1rem'}}>
             <CardContent>
@@ -47,7 +52,9 @@ export const JobOffers = () => {
             </CardContent>
             <CardActions>
               <Box width="100%" display='flex' justifyContent='flex-end'>
-                <Button sx={{marginLeft: '1rem', marginBottom: '1rem'}} variant='contained'>CHECK IT</Button>
+                <Link to="/offerDetails" style={{ textDecoration: "none", color: "inherit" }}>
+                  <Button sx={{marginLeft: '1rem', marginBottom: '1rem', marginRight: '1rem'}} variant='contained'>CHECK IT</Button>
+                </Link>
               </Box>
             </CardActions>
           </Card>

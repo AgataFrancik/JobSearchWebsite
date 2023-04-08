@@ -1,11 +1,11 @@
 import React from 'react'
 import { Box, Button, Paper, TextField, Typography} from '@mui/material'
 
-export const AddJobOffer = () => {
+export const EditOffer = () => {
   return (
     <Box width="100%"  display="flex" justifyContent="center" marginTop="3rem">
         <Paper sx={{width: "65%", padding: '1rem'}}>
-            <Typography variant='h4' sx={{marginBottom: "2rem"}}>ADD OFFER</Typography>
+            <Typography variant='h4' sx={{marginBottom: "2rem"}}>EDIT OFFER</Typography>
             <Box display="flex" flexDirection='column'>
                 <TextField placeholder='Company name'></TextField>
                 <TextField placeholder='Salary'></TextField>

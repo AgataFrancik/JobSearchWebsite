@@ -9,6 +9,8 @@ import { AccountSettings } from './accountSettings/AccountSettings';
 import { JobOffers } from './jobOffers/JobOffers';
 import { UserJobOffer } from './userJobOffer/UserJobOffer';
 import { AddJobOffer } from './addJobOffer/AddJobOffer';
+import { JobOfferDetails } from './jobOfferDetails/JobOfferDetails';
+import { EditOffer } from './editOffer/EditOffer';
 
 
 function App() {
@@ -24,6 +26,9 @@ function App() {
         <Route path='/allOffers' element={<JobOffers/>} />
         <Route path='/userOffers' element={<UserJobOffer/>} />
         <Route path='/addJobOffer' element={<AddJobOffer/>}/>
+        <Route path='/offerDetails' element={<JobOfferDetails/>}/>
+        <Route path='/addOffer' element={<AddJobOffer/>}/>
+        <Route path='/editOffer' element={<EditOffer/>}/>
        </Routes> 
       </Box>
     </>

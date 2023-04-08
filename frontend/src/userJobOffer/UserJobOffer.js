@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Paper, Card, Typography, CardContent, CardActions, Button, Chip } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Link } from 'react-router-dom';
 
 const jobs = [
   {
@@ -30,7 +31,9 @@ export const UserJobOffer = () => {
   return (
     <Box width="100%"  display="flex" justifyContent="center" marginTop="3rem">
       <Paper sx={{width: "85%"}}>
-      <Button size='large' variant='contained' sx={{margin: '1rem'}}>ADD NEW JOB OFFER</Button>
+      <Link to="/addOffer" style={{ textDecoration: "none", color: "inherit" }}>
+        <Button size='large' variant='contained' sx={{margin: '1rem'}}>ADD NEW JOB OFFER</Button>
+      </Link>
         {jobs.map((job) =>(
           <Card sx={{margin: '1rem'}}>
             <CardContent>
@@ -49,8 +52,12 @@ export const UserJobOffer = () => {
             </CardContent>
             <CardActions>
               <Box width="100%" display='flex' justifyContent='flex-end'>
+              <Link to="/offerDetails" style={{ textDecoration: "none", color: "inherit" }}>
                 <Button sx={{marginLeft: '1rem', marginBottom: '1rem'}} variant='contained'>CHECK IT</Button>
+                </Link>
+                <Link to="/editOffer" style={{ textDecoration: "none", color: "inherit" }}>
                 <Button sx={{marginLeft: '1rem', marginBottom: '1rem'}} variant='outlined'>EDIT</Button>
+                </Link>
                 <Button sx={{ marginBottom: '1rem'}}><DeleteIcon style={{ color: 'red', fontSize: 30 }}/></Button>
               </Box>
             </CardActions>
