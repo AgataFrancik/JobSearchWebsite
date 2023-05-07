@@ -18,6 +18,7 @@ class Offer(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET('INNA'))
     description = models.TextField()
     tags = models.CharField(max_length=200, default="")
+    company_name = models.CharField(max_length=200, default="")
 
     def __str__(self):
         return self.name
