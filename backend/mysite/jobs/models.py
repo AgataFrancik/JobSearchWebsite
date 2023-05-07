@@ -17,6 +17,7 @@ class Offer(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.SET('INNA'))
     description = models.TextField()
+    tags = models.CharField(max_length=200, default="")
 
     def __str__(self):
         return self.name
