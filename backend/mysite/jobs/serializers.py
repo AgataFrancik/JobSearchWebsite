@@ -1,8 +1,14 @@
 from rest_framework import serializers
 from .models import Offer
 from django.contrib.auth.models import User
+from taggit.serializers import (TagListSerializerField,
+                                TaggitSerializer)
 
-class OfferSerializer(serializers.ModelSerializer):
+
+class OfferSerializer(TaggitSerializer, serializers.ModelSerializer):
+    
+    tags = TagListSerializerField()
+
     class Meta:
         fields = '__all__'
         model = Offer

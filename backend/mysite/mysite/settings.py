@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'rest_framework_simplejwt',
     'rest_framework_swagger',
+    'taggit',
 
     #'trench',
     
@@ -205,3 +206,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+TAGGIT_CASE_INSENSITIVE = True
