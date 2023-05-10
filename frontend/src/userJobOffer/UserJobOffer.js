@@ -1,5 +1,6 @@
-import React from 'react'
-import { Box, Paper, Card, Typography, CardContent, CardActions, Button, Chip } from '@mui/material'
+import { useState } from 'react'
+import { Box, Paper, Card, Typography, CardContent, CardActions, Button, Chip, TextField } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 
@@ -28,13 +29,21 @@ const jobs = [
 ]
 
 export const UserJobOffer = () => {
+
+  const [search, setSearch] = useState('');
+
   return (
     <Box width="100%"  display="flex" justifyContent="center" marginTop="3rem">
       <Paper sx={{width: "85%"}}>
       <Link to="/addOffer" style={{ textDecoration: "none", color: "inherit" }}>
         <Button size='large' variant='contained' sx={{margin: '1rem'}}>ADD NEW JOB OFFER</Button>
       </Link>
-        {jobs.map((job) =>(
+      <TextField sx={{width: "95%", margin: '1rem'}} onChange={(e) => setSearch(e.target.value)} placeholder="Search" InputProps={{
+        startAdornment: <SearchIcon />
+      }} ></TextField>
+        {jobs.filter((job)=>{
+          return search.toLocaleLowerCase() === "" ? job : (job.JobName.toLocaleLowerCase().includes(search) || job.Company.toLocaleLowerCase().includes(search))
+        }).map((job) =>(
           <Card sx={{margin: '1rem'}}>
             <CardContent>
               <Box display="flex" justifyContent='space-between'>
