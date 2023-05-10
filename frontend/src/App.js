@@ -26,7 +26,7 @@ function App() {
         <Route path='/allOffers' element={<JobOffers/>} />
         <Route path='/userOffers' element={<UserJobOffer/>} />
         <Route path='/addJobOffer' element={<AddJobOffer/>}/>
-        <Route path='/offerDetails' element={<JobOfferDetails/>}/>
+        <Route path='/offerDetails/:id' element={<JobOfferDetails/>}/>
         <Route path='/addOffer' element={<AddJobOffer/>}/>
         <Route path='/editOffer' element={<EditOffer/>}/>
        </Routes> 
