@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'rest_framework_simplejwt',
-    'rest_framework_swagger',
+    'rest_framework_simplejwt.token_blacklist',
+    'djoser',
+    'social_django',
     'taggit',
 
     #'trench',
@@ -72,49 +74,27 @@ REST_AUTH ={
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 
 }
+
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=5),
+    'AUTH_TOKEN_CLASSES': (
+        'rest_framework_simplejwt.tokens.AccessToken',
+    ),
 }
 
-"""
-TRENCH_AUTH = {
-    "USER_MFA_MODEL": "trench.MFAMethod",
-    "USER_ACTIVE_FIELD": "is_active",
-    "BACKUP_CODES_QUANTITY": 5,
-    "BACKUP_CODES_LENGTH": 12,
-    "BACKUP_CODES_CHARACTERS": (string.ascii_letters + string.digits),
-    "SECRET_KEY_LENGTH": 32,
-    "DEFAULT_VALIDITY_PERIOD": 30,
-    "CONFIRM_DISABLE_WITH_CODE": False,
-    "CONFIRM_BACKUP_CODES_REGENERATION_WITH_CODE": True,
-    "ALLOW_BACKUP_CODES_REGENERATION": True,
-    "ENCRYPT_BACKUP_CODES": True,
-    "APPLICATION_ISSUER_NAME": "MyApplication",
-    "MFA_METHODS": {
-        "email": {
-            "VERBOSE_NAME": "email",
-            "VALIDITY_PERIOD": 60 * 10,
-            "HANDLER": "trench.backends.basic_mail.SendMailBackend",
-            "SOURCE_FIELD": "email",
-            "EMAIL_SUBJECT":"Your verification code",
-            "EMAIL_PLAIN_TEMPLATE": "trench/backends/email/code.txt",
-            "EMAIL_HTML_TEMPLATE": "trench/backends/email/code.html",
-        },
-        # Your other backends here
-    }
-}
-"""
+
 MIDDLEWARE = [
+    'social_django.middleware.SocialAuthExceptionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -144,6 +124,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -208,3 +190,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 TAGGIT_CASE_INSENSITIVE = True
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SEND_CONFIRMATION_EMAIL': True,
+    'SEND_ACTIVATION_EMAIL': True,
+    'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:8000/google'],
+    'SERIALIZERS': {
+        'user_create': 'jobs.serializers.UserSerializer',
+        'user': 'jobs.serializers.UserSerializer',
+        'current_user': 'jobs.serializers.UserSerializer',
+        'user_delete': 'djoser.serializers.UserDeleteSerializer',
+    },
+}
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '491866214761-qaovqbijvke44gst33a8pfmdj0egn3pk.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile', 'openid']
+SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['username'] 

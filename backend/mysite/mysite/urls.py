@@ -23,11 +23,8 @@ from rest_framework.documentation import include_docs_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('jobs.urls')),
-    path('api/v1/auth/', include('dj_rest_auth.urls')),
-    path('api/v1/auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    #path('auth/', include('trench.urls')),
-    #path('auth/', include('trench.urls.jwt')),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth/', include('djoser.urls.jwt')),
+    path('api/v1/auth/', include('djoser.social.urls')),
     path('docs/', include_docs_urls(title='JobOfferAPI')),
 ]
