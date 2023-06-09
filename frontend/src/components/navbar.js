@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AppBar, Typography, Toolbar, Box, Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import WorkIcon from "@mui/icons-material/Work";
-import { MenuBar } from "./menuBar";
+import  MenuBar  from "./menuBar";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {

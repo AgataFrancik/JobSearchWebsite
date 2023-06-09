@@ -7,6 +7,8 @@ import api from '../api/posts';
 export const JobOffers = () => {
 
   const [offers, setOffers] = useState([]);
+  const [search, setSearch] = useState('');
+
   useEffect(() => {
     const fetchPosts = async () => {
       try{
@@ -26,10 +28,12 @@ export const JobOffers = () => {
   return (
     <Box width="100%"  display="flex" justifyContent="center" marginTop="3rem">
       <Paper sx={{width: "85%"}}>
-      <TextField sx={{width: "95%", margin: '1rem'}} placeholder="Search" InputProps={{
+      <TextField sx={{width: "95%", margin: '1rem'}} onChange={(e) => setSearch(e.target.value)} placeholder="Search" InputProps={{
         startAdornment: <SearchIcon />
       }} ></TextField>
-        {offers ? ( offers.map((job) =>(
+        {offers ? ( offers.filter((job)=>{
+          return search.toLocaleLowerCase() === "" ? job : (job.name.toLocaleLowerCase().includes(search) || job.company_name.toLocaleLowerCase().includes(search))
+        }).map((job) =>(
           <Card sx={{margin: '1rem'}}>
             <CardContent>
               <Box display="flex" justifyContent='space-between'>
