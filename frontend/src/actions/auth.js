@@ -32,7 +32,7 @@ export const load_user = () => async (dispatch) => {
       },
     };
     try {
-      const response = await api.get("api/v1/auth/v1/users/me/", config);
+      const response = await api.get("api/v1/auth/users/me/", config);
       dispatch({
         type: LOAD_USER_SUCCESS,
         payload: response.data,
@@ -84,9 +84,11 @@ export const checkAuthenticated = () => async (dispatch) => {
         'Accept': "application/json",
       },
     };
+    console.log('authentication1')
     const body = JSON.stringify({ token: localStorage.getItem("access") });
     try {
-      const response = await axios.post("api/auth/jwt/verify/", body, config);
+      console.log('authentication2')
+      const response = await api.post("api/v1/auth/jwt/verify/", body, config);
       if (response.data.code !== "token_not_valid") {
         dispatch({
           type: AUTHENTICATION_SUCCESS,

@@ -21,7 +21,7 @@ import {
 const initialState = {
   access: localStorage.getItem("access"),
   refresh: localStorage.getItem("refresh"),
-  isAutenticated: null,
+  isAuthenticated: null,
   user: null,
 };
 
@@ -32,21 +32,21 @@ export default function (state = initialState, action) {
     case AUTHENTICATION_SUCCESS:
       return {
         ...state,
-        isAutenticated: true,
+        isAuthenticated: true,
       };
     case LOGIN_SUCCESS:
       localStorage.setItem("access", payload.access);
       localStorage.setItem("refresh", payload.refresh);
       return {
         ...state,
-        isAutenticated: true,
+        isAuthenticated: true,
         access: payload.access,
         refresh: payload.refresh,
       };
     case SIGNUP_SUCCESS:
       return {
         ...state,
-        isAutenticated: false,
+        isAuthenticated: false,
       };
     case LOAD_USER_SUCCESS:
       return {
@@ -56,7 +56,7 @@ export default function (state = initialState, action) {
     case AUTHENTICATION_FAIL:
       return {
         ...state,
-        isAutenticated: false,
+        isAuthenticated: false,
       };
     case LOAD_USER_FAIL:
       return {
@@ -67,7 +67,7 @@ export default function (state = initialState, action) {
       localStorage.setItem("access", payload.access);
       return {
         ...state,
-        isAutenticated: true,
+        isAuthenticated: true,
         access: payload.access,
         refresh: payload.refresh,
       };
@@ -79,7 +79,7 @@ export default function (state = initialState, action) {
       localStorage.removeItem("refresh");
       return {
         ...state,
-        isAutenticated: false,
+        isAuthenticated: false,
         access: null,
         refresh: null,
         user: null,

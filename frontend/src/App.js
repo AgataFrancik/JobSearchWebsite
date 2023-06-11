@@ -7,7 +7,7 @@ import Login from "./login/Login";
 import Register  from "./register/Register";
 import { AccountSettings } from "./accountSettings/AccountSettings";
 import { JobOffers } from "./jobOffers/JobOffers";
-import { UserJobOffer } from "./userJobOffer/UserJobOffer";
+import UserJobOffer from "./userJobOffer/UserJobOffer";
 import { AddJobOffer } from "./addJobOffer/AddJobOffer";
 import { JobOfferDetails } from "./jobOfferDetails/JobOfferDetails";
 import { EditOffer } from "./editOffer/EditOffer";
