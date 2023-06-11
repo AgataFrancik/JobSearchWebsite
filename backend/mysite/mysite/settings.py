@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'social_django',
     'taggit',
 
-    'sslserver'
+    'sslserver',
 
     #'trench',
     
