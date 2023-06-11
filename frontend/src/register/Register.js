@@ -1,18 +1,17 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
-import AuthContext from "../context/authProvider";
+import React, { useState} from "react";
 import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { signup } from "../actions/auth";
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import api from '../api/posts';
 
-export const Register = ({ signup, isAuthenticated }) => {
+const Register = ({ signup, isAuthenticated }) => {
   const [accountCreated, setAccountCreated] = useState(false);
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     re_password: ''
   });
   const { first_name, last_name, email, password, re_password } = formData;
@@ -35,7 +34,7 @@ export const Register = ({ signup, isAuthenticated }) => {
   }
   const continueWithGoogle = async () => {
     try{
-      const response = await api.get('api/v1/auth/o/google-oauth2/?redirect_uri=http://localhost:8000/google') //google-oauth2/
+      const response = await api.get('/api/v1/auth/o/google-oauth2/?redirect_uri=http://localhost:3000/allOffers') //google-oauth2/
       window.location.replace(response.data.authorization_url);
     }catch(err){
 

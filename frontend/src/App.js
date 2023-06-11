@@ -3,8 +3,8 @@ import "./App.css";
 import NavBar from "./components/navbar";
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "./homepage/homePage";
-import { Login } from "./login/Login";
-import { Register } from "./register/Register";
+import Login from "./login/Login";
+import Register  from "./register/Register";
 import { AccountSettings } from "./accountSettings/AccountSettings";
 import { JobOffers } from "./jobOffers/JobOffers";
 import { UserJobOffer } from "./userJobOffer/UserJobOffer";
@@ -16,6 +16,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Layout from "./hocs/Layout";
 import ResetPassword from "./resetPassword/ResetPassword";
+import ResetPasswordConfirm from './resetPassword/ResetPasswordConfirm';
 import Activate from "./activate/Activate";
 
 function App() {
@@ -34,7 +35,8 @@ function App() {
             <Route path="/addOffer" element={<AddJobOffer />} />
             <Route path="/editOffer" element={<EditOffer />} />
             <Route path="/resetPassword" element={<ResetPassword/>} />
-            <Route path="/verifyAccount" element={<Activate/>} />
+            <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm/>} />
+            <Route path="/verifyAccount/:iud/:token" element={<Activate/>} />
           </Routes>
         </Layout>
       </Provider>

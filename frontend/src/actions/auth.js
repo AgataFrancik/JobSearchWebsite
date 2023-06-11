@@ -15,6 +15,8 @@ import {
   ACTIVATION_SUCCESS,
   GOOGLE_AUTH_FAIL,
   GOOGLE_AUTH_SUCCESS,
+  GET_JOBS,
+  ADD_JOB,
   LOGOUT,
 } from "./types";
 import api from "../api/posts";
@@ -60,7 +62,7 @@ export const googleAuthenticate = (state, code) => async dispatch =>{
     }
     const formBody = Object.keys(detalis).map(key => encodeURIComponent(key)+ '='+ encodeURIComponent(detalis[key])).join('&');
     try{
-      const response = await api.post(`api/v1/auth/o/?${formBody}`, config); //google-oauth2/
+      const response = await api.post(`api/v1/auth/o/google-oauth2/?${formBody}`, config); //google-oauth2/
       dispatch({
         type: GOOGLE_AUTH_SUCCESS,
         payload: response.data
@@ -106,29 +108,32 @@ export const checkAuthenticated = () => async (dispatch) => {
   }
 };
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (email, password) => async dispatch => {
   console.log('Hello');
   const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+      headers: {
+          'Content-Type': 'application/json'
+      }
   };
+
   const body = JSON.stringify({ email, password });
 
   try {
-    console.log('try api');
-    const response = await api.post("api/v1/auth/v1/jwt/create/", body, config);
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: response.data,
-    });
-    dispatch(load_user());
+      const res = await api.post("api/v1/auth/jwt/create/", body, config);
+
+      dispatch({
+          type: LOGIN_SUCCESS,
+          payload: res.data
+      });
+
+      dispatch(load_user());
   } catch (err) {
-    dispatch({
-      type: LOGIN_FAIL,
-    });
+      dispatch({
+          type: LOGIN_FAIL
+      })
   }
 };
+
 export const signup = (first_name, last_name, email, password, re_password) => async (dispatch) => {
   const config = {
     headers: {
@@ -218,3 +223,21 @@ export const logout = () => (dispatch) => {
     type: LOGOUT,
   });
 };
+
+export const get_user_jobs = () => (dispatch, getState) => {
+  const userId = getState().auth.user._id;
+  const jobs = api.get(`api/v1/${userId}`)
+  .then((res) =>
+    dispatch({
+      type: GET_JOBS,
+      payload: res.data,
+    })
+  )
+  .catch((err) => {
+  });
+  return jobs;
+}
+
+export const add_offer = ({company_name, salary, job_name, place, tags }) => dispatch => {
+  
+}
