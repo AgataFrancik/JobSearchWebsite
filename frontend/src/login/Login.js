@@ -7,11 +7,11 @@ import api from "../api/posts";
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
-  const { email, password } = formData;
+  const { username, password } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,7 +19,7 @@ const Login = ({ login, isAuthenticated }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    login(email, password);
+    login(username, password);
   };
 
   const continueWithGoogle = async () => {
@@ -51,8 +51,8 @@ const Login = ({ login, isAuthenticated }) => {
               placeholder="Username"
               sx={{ marginBottom: "1rem" }}
               onChange={(e) => onChange(e)}
-              value={email}
-              name="email"
+              value={username}
+              name="username"
               id="username"
               required
             ></TextField>

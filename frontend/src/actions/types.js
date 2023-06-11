@@ -16,3 +16,4 @@ export const GOOGLE_AUTH_SUCCESS = 'GOOGLE_AUTH_SUCCESS';
 export const GOOGLE_AUTH_FAIL = 'GOOGLE_AUTH_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const GET_JOBS = 'GET_JOBS';
+export const ADD_JOB = 'ADD_JOB';

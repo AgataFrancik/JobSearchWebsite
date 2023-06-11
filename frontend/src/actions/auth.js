@@ -108,7 +108,7 @@ export const checkAuthenticated = () => async (dispatch) => {
   }
 };
 
-export const login = (email, password) => async dispatch => {
+export const login = (username, password) => async dispatch => {
   console.log('Hello');
   const config = {
       headers: {
@@ -116,7 +116,7 @@ export const login = (email, password) => async dispatch => {
       }
   };
 
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({ username, password });
 
   try {
       const res = await api.post("api/v1/auth/jwt/create/", body, config);
