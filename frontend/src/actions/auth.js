@@ -9,6 +9,10 @@ import {
   PASSWORD_RESET_CONFIRM_SUCCESS,
   PASSWORD_RESET_FAIL,
   PASSWORD_RESET_SUCCESS,
+  USERNAME_RESET_FAIL,
+  USERNAME_RESET_SUCCESS,
+  USERNAME_RESET_CONFIRM_FAIL,
+  USERNAME_RESET_CONFIRM_SUCCESS,
   SIGNUP_FAIL,
   SIGNUP_SUCCESS,
   ACTIVATION_FAIL,
@@ -219,15 +223,51 @@ export const reset_password_confirmed = (uid, token, new_password, re_new_passwo
     })
   }
 }
+export const username_reset = (email) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({email});
 
+  try{
+    const response = await api.post("api/v1/auth/users/reset_username/", body, config);
+    dispatch({
+      type: USERNAME_RESET_SUCCESS
+    })
+  }catch(err){
+    dispatch({
+      type: USERNAME_RESET_FAIL
+    })
+  }
+}
+export const username_password_confirmed = (new_username) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({new_username});
+  try{
+    const response = await api.post("api/v1/auth/users/reset_username_confirm/", body, config);
+    dispatch({
+      type: USERNAME_RESET_CONFIRM_SUCCESS
+    })
+  }catch(err){
+    dispatch({
+      type: USERNAME_RESET_CONFIRM_FAIL
+    })
+  }
+}
 export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
 };
 
-export const get_user_jobs = () => (dispatch, getState) => {
-  const userId = getState().auth.user._id;
+export const get_user_jobs = (userId) => dispatch => {
+  //const userId = getState().auth.user._id;
   const jobs = api.get(`api/v1/${userId}`)
   .then((res) =>
     dispatch({
@@ -237,6 +277,7 @@ export const get_user_jobs = () => (dispatch, getState) => {
   )
   .catch((err) => {
   });
+  console.log(jobs);
   return jobs;
 }
 

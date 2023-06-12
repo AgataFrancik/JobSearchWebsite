@@ -16,6 +16,8 @@ import {
   GOOGLE_AUTH_FAIL,
   GOOGLE_AUTH_SUCCESS,
   LOGOUT,
+  USERNAME_RESET_FAIL,
+  USERNAME_RESET_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -84,6 +86,8 @@ export default function (state = initialState, action) {
         refresh: null,
         user: null,
       };
+    case USERNAME_RESET_FAIL:
+    case USERNAME_RESET_SUCCESS:
     case PASSWORD_RESET_CONFIRM_FAIL:
     case PASSWORD_RESET_CONFIRM_SUCCESS:
     case PASSWORD_RESET_FAIL:

@@ -14,56 +14,54 @@ import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import api from '../api/posts';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { get_user_jobs } from "../actions/auth";
 
-const jobs = [
-  {
-    Company: "Netia sp z.o.o",
-    Salary: "12 000 zł",
-    JobName: "Junior front dev",
-    Place: "Wroclaw",
-    Tags: ["JavaScript", "HTML", "CSS"],
-  },
-  {
-    Company: "Politechnika Wroclawska",
-    Salary: "15 000 zł",
-    JobName: "Mid backend dev",
-    Place: "Wroclaw",
-    Tags: ["Java", "SQL"],
-  },
-  {
-    Company: "ING Bank Polszy",
-    Salary: "19 000 zł",
-    JobName: "Senior backend dev",
-    Place: "Wroclaw",
-    Tags: ["C#", "SQL", ".NET"],
-  },
-];
+// const jobs = [
+//   {
+//     Company: "Netia sp z.o.o",
+//     Salary: "12 000 zł",
+//     JobName: "Junior front dev",
+//     Place: "Wroclaw",
+//     Tags: ["JavaScript", "HTML", "CSS"],
+//   },
+//   {
+//     Company: "Politechnika Wroclawska",
+//     Salary: "15 000 zł",
+//     JobName: "Mid backend dev",
+//     Place: "Wroclaw",
+//     Tags: ["Java", "SQL"],
+//   },
+//   {
+//     Company: "ING Bank Polszy",
+//     Salary: "19 000 zł",
+//     JobName: "Senior backend dev",
+//     Place: "Wroclaw",
+//     Tags: ["C#", "SQL", ".NET"],
+//   },
+// ];
 
-const UserJobOffer = ({ get_user_jobs, isAuthenticated }) => {
+const UserJobOffer = ({ get_user_jobs, isAuthenticated, action }) => {
   const [search, setSearch] = useState("");
-  //const [jobs, setJobs] = useState([]);
-  
-  const user = localStorage.getItem("user");
-  console.log(user);
+  const [jobs, setJobs] = useState([]);
+  const userId = useSelector((state) => state.auth.user.id);
+
   useEffect(() => {
     if(isAuthenticated){
-      const job = get_user_jobs();
-      //setJobs(job);
-    // const fetchPosts = async () => {
-    //   try{
-    //     const response = await api.get(`api/v1/${id}`);
-    //     if(response && response.data) setJobs(response.data);
-    //     console.log(response.data)
-        
-    //   } catch(err){
-    //     console.log(err.response.data);
-    //   }
-    // }
-    // fetchPosts();
+      const fetchData = async () => {
+      const job = await get_user_jobs(userId);
+      //const offers = useSelector((state) => state)
+      console.log("job ", job.payload);
+      setJobs(job.payload);
+      }
+      fetchData();
   }
+  
   }, [])
+  
+    // const offers = useSelector((state) => state)
+     console.log('jobs', jobs);
+  
 
   return (
     <Box width="100%" display="flex" justifyContent="center" marginTop="3rem">
