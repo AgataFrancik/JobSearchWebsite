@@ -18,6 +18,10 @@ import {
   LOGOUT,
   USERNAME_RESET_FAIL,
   USERNAME_RESET_SUCCESS,
+  ADD_JOB_FAIL,
+  ADD_JOB_SUCCESS,
+  GET_JOBS_FAIL,
+  GET_JOBS_SUCCESS
 } from "../actions/types";
 
 const initialState = {
@@ -86,6 +90,10 @@ export default function (state = initialState, action) {
         refresh: null,
         user: null,
       };
+    case ADD_JOB_FAIL:
+    case ADD_JOB_SUCCESS:
+      case GET_JOBS_FAIL:
+    case GET_JOBS_SUCCESS:
     case USERNAME_RESET_FAIL:
     case USERNAME_RESET_SUCCESS:
     case PASSWORD_RESET_CONFIRM_FAIL:

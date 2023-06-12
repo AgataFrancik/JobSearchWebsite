@@ -19,8 +19,10 @@ import {
   ACTIVATION_SUCCESS,
   GOOGLE_AUTH_FAIL,
   GOOGLE_AUTH_SUCCESS,
-  GET_JOBS,
-  ADD_JOB,
+  GET_JOBS_SUCCESS,
+  GET_JOBS_FAIL,
+  ADD_JOB_SUCCESS,
+  ADD_JOB_FAIL,
   LOGOUT,
 } from "./types";
 import api from "../api/posts";
@@ -271,16 +273,38 @@ export const get_user_jobs = (userId) => dispatch => {
   const jobs = api.get(`api/v1/${userId}`)
   .then((res) =>
     dispatch({
-      type: GET_JOBS,
+      type: GET_JOBS_SUCCESS,
       payload: res.data,
     })
   )
   .catch((err) => {
+    dispatch({
+      type: GET_JOBS_FAIL
+    })
   });
   console.log(jobs);
   return jobs;
 }
 
-export const add_offer = ({company_name, salary, job_name, place, tags }) => dispatch => {
-  
+export const add_offer = (company_name, salary, job_name, place, tags ) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ company_name, salary, job_name, place, tags });
+
+  try {
+    console.log('try api');
+    const response = await api.post("api/v1/", body, config);
+    dispatch({
+      type: ADD_JOB_SUCCESS,
+      payload: response.data,
+    });
+    dispatch(load_user());
+  } catch (err) {
+    dispatch({
+      type: ADD_JOB_FAIL,
+    });
+  }
 }
