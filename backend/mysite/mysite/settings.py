@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-n^&&4go)!mw%$v(gw@o(24f7d6^iyty=_8=mkx!r&-ajb39-6r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jobsearchwebsite-production.up.railway.app', '127.0.0:1']
 
 
 # Application definition
@@ -105,7 +105,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 CORS_ORIGIN_WHITELIST = (
