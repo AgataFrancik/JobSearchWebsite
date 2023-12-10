@@ -33,7 +33,7 @@ function App() {
             <Route path="/addJobOffer" element={<AddJobOffer />} />
             <Route path="/offerDetails/:id" element={<JobOfferDetails />} />
             <Route path="/addOffer" element={<AddJobOffer />} />
-            <Route path="/editOffer" element={<EditOffer />} />
+            <Route path="/editOffer/:id" element={<EditOffer />} />
             <Route path="/resetPassword" element={<ResetPassword/>} />
             <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm/>} />
             <Route path="/verifyAccount/:iud/:token" element={<Activate/>} />

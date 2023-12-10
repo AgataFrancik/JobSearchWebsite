@@ -117,7 +117,6 @@ export const checkAuthenticated = () => async (dispatch) => {
 };
 
 export const login = (username, password) => async dispatch => {
-  console.log('Hello');
   const config = {
       headers: {
           'Content-Type': 'application/json'
@@ -286,17 +285,41 @@ export const get_user_jobs = (userId) => dispatch => {
   return jobs;
 }
 
-export const add_offer = (company_name, salary, job_name, place, tags ) => async dispatch => {
+export const add_offer = (company_name, salary, job_name, place, tags, author, category ) => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  const body = JSON.stringify({ company_name, salary, job_name, place, tags });
+  const body = JSON.stringify({ company_name, salary, job_name, place, tags, author, category });
 
   try {
     console.log('try api');
     const response = await api.post("api/v1/", body, config);
+    dispatch({
+      type: ADD_JOB_SUCCESS,
+      payload: response.data,
+    });
+    dispatch(load_user());
+  } catch (err) {
+    dispatch({
+      type: ADD_JOB_FAIL,
+    });
+  }
+}
+
+
+export const edit_offer = (company_name, salary, job_name, place, tags, author, category, id ) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ company_name, salary, job_name, place, tags, author, category });
+
+  try {
+    console.log('try api');
+    const response = await api.put(`api/v1/${id}`, body, config);
     dispatch({
       type: ADD_JOB_SUCCESS,
       payload: response.data,

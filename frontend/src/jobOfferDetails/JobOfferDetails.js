@@ -3,6 +3,7 @@ import { Box, Button, Paper, TextField, Typography} from '@mui/material'
 import { useParams, useNavigate } from 'react-router-dom'
 import api from '../api/posts';
 
+
 // const job =
 //   {
 //     Company: "Netia sp z.o.o",
