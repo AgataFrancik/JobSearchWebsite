@@ -29,5 +29,5 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - name: Run test
-      working-directory: ./src
+      working-directory: ./frontend/src
       run: npm test
