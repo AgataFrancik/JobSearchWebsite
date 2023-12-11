@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/JobSearchWebsite/static/css/main.073c9b0a.css",
-    "main.js": "/JobSearchWebsite/static/js/main.a6e7eb5b.js",
-    "static/js/787.cda612ba.chunk.js": "/JobSearchWebsite/static/js/787.cda612ba.chunk.js",
-    "static/media/planeta.mp4": "/JobSearchWebsite/static/media/planeta.b16b5b2ff579a8d2396c.mp4",
-    "static/media/goose-dance.gif": "/JobSearchWebsite/static/media/goose-dance.db734871adfb74ecff41.gif",
-    "static/media/Anser_anser_1_(Piotr_Kuczynski).jpg": "/JobSearchWebsite/static/media/Anser_anser_1_(Piotr_Kuczynski).9f8a5c785ae3a021b552.jpg",
-    "static/media/goose-4097083626-1562689760284.jpg": "/JobSearchWebsite/static/media/goose-4097083626-1562689760284.b5454b1551a4690acc3d.jpg",
-    "static/media/gabrielle-genevieve-goose-chase.gif": "/JobSearchWebsite/static/media/gabrielle-genevieve-goose-chase.314857b7d2e7abca71d9.gif",
-    "static/media/biuro.jpg": "/JobSearchWebsite/static/media/biuro.4b2fca64a2c9ff2cc4c8.jpg",
-    "index.html": "/JobSearchWebsite/index.html",
-    "main.073c9b0a.css.map": "/JobSearchWebsite/static/css/main.073c9b0a.css.map",
-    "main.a6e7eb5b.js.map": "/JobSearchWebsite/static/js/main.a6e7eb5b.js.map",
-    "787.cda612ba.chunk.js.map": "/JobSearchWebsite/static/js/787.cda612ba.chunk.js.map"
+    "main.css": "/frontend/static/css/main.073c9b0a.css",
+    "main.js": "/frontend/static/js/main.553c6ad8.js",
+    "static/js/787.cda612ba.chunk.js": "/frontend/static/js/787.cda612ba.chunk.js",
+    "static/media/planeta.mp4": "/frontend/static/media/planeta.b16b5b2ff579a8d2396c.mp4",
+    "static/media/goose-dance.gif": "/frontend/static/media/goose-dance.db734871adfb74ecff41.gif",
+    "static/media/Anser_anser_1_(Piotr_Kuczynski).jpg": "/frontend/static/media/Anser_anser_1_(Piotr_Kuczynski).9f8a5c785ae3a021b552.jpg",
+    "static/media/goose-4097083626-1562689760284.jpg": "/frontend/static/media/goose-4097083626-1562689760284.b5454b1551a4690acc3d.jpg",
+    "static/media/gabrielle-genevieve-goose-chase.gif": "/frontend/static/media/gabrielle-genevieve-goose-chase.314857b7d2e7abca71d9.gif",
+    "static/media/biuro.jpg": "/frontend/static/media/biuro.4b2fca64a2c9ff2cc4c8.jpg",
+    "index.html": "/frontend/index.html",
+    "main.073c9b0a.css.map": "/frontend/static/css/main.073c9b0a.css.map",
+    "main.553c6ad8.js.map": "/frontend/static/js/main.553c6ad8.js.map",
+    "787.cda612ba.chunk.js.map": "/frontend/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.a6e7eb5b.js"
+    "static/js/main.553c6ad8.js"
   ]
 }
